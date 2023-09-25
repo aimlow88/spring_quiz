@@ -25,4 +25,12 @@ public class RealEstateBO {
 	public List<RealEstate> getRealEstateListByAreaPrice(Map<String, String> paramMap){
 		return realEstateMapper.selectRealEstateListByAreaPrice(paramMap);
 	}
+	
+	public int addRealEstate(RealEstate realEstate) {
+		return realEstateMapper.insertRealEstate(realEstate);
+	}
+	
+	public int addRealEstateAsFiled(int realtorId, String address, int area, String type, int price, Integer rentPrice) {
+		return realEstateMapper.insertRealEstateAsFiled(realtorId, address, area, type, price, rentPrice);
+	}
 }
