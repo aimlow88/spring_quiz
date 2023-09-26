@@ -14,6 +14,7 @@ public class RealEstateBO {
 	
 	@Autowired
 	private RealEstateMapper realEstateMapper;
+	
 	public List<RealEstate> getRealEstate(int id){
 		return realEstateMapper.selectRealEstate(id);
 	}
@@ -22,8 +23,8 @@ public class RealEstateBO {
 		return realEstateMapper.selectRealEstateListByRentPrice(rent_price);
 	}
 	
-	public List<RealEstate> getRealEstateListByAreaPrice(Map<String, String> paramMap){
-		return realEstateMapper.selectRealEstateListByAreaPrice(paramMap);
+	public List<RealEstate> getRealEstateListByAreaPrice(int area, int price){
+		return realEstateMapper.selectRealEstateListByAreaPrice(area, price);
 	}
 	
 	public int addRealEstate(RealEstate realEstate) {
@@ -32,5 +33,13 @@ public class RealEstateBO {
 	
 	public int addRealEstateAsFiled(int realtorId, String address, int area, String type, int price, Integer rentPrice) {
 		return realEstateMapper.insertRealEstateAsFiled(realtorId, address, area, type, price, rentPrice);
+	}
+	
+	public int changeRealEstateAsId(int id, String type, int price) {
+		return realEstateMapper.updateRealEstateAsId(id, type, price);
+	}
+	
+	public int subtrtRealEstateById(int id) {
+		return realEstateMapper.deleteRealEstateById(id);
 	}
 }

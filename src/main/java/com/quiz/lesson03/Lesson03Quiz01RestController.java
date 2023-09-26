@@ -18,18 +18,19 @@ public class Lesson03Quiz01RestController {
 	@Autowired
 	private RealEstateBO realEstateBO;
 	@RequestMapping("/1")
-	public List<RealEstate> quiz01_1(@RequestParam(value="id", required=false) int id){
+	public List<RealEstate> quiz01_1(@RequestParam(value="id") int id){
 		return realEstateBO.getRealEstate(id);
 	}
 	
 	@RequestMapping("/2")
-	public List<RealEstate> quiz01_2(@RequestParam(value="rentPrice", required=false) Integer rentPrice){
+	public List<RealEstate> quiz01_2(@RequestParam(value="rentPrice") Integer rentPrice){
 		return realEstateBO.getRealEstateListByRentPrice(rentPrice);
 	}
 	
 	@RequestMapping("/3")
-	public List<RealEstate> quiz01_3(@RequestParam Map<String,String> paramMap){
-		return realEstateBO.getRealEstateListByAreaPrice(paramMap);
+	public List<RealEstate> quiz01_3(
+			@RequestParam(value="area") int area, @RequestParam(value="price") int price){
+		return realEstateBO.getRealEstateListByAreaPrice(area, price);
 	}
 
 }

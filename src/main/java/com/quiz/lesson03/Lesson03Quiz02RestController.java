@@ -26,7 +26,7 @@ public class Lesson03Quiz02RestController {
 		realEstate.setPrice(100000);
 //		realEstate.setRentPrice(null);
 		
-		return "성공건수 : " + realEstateBO.addRealEstate(realEstate);
+		return "성공 건수 : " + realEstateBO.addRealEstate(realEstate);
 	}
 	
 	@RequestMapping("/2")
@@ -34,7 +34,7 @@ public class Lesson03Quiz02RestController {
 		
 		int rowCount = realEstateBO.addRealEstateAsFiled(realtorId, "쌍떼빌라 오피스텔 814호", 45, "월세", 100000, 120);
 		
-		return "성공건수 : " + rowCount;
+		return "성공 건수 : " + rowCount;
 	}
 
 }

@@ -20,7 +20,7 @@
  			`id` = #{id}	
  	</select>
  	
- 	<select id="selectRealEstateListByRentPrice" parameterType="int" resultType="com.quiz.lesson03.domain.RealEstate">
+ 	<select id="selectRealEstateListByRentPrice" parameterType="map" resultType="com.quiz.lesson03.domain.RealEstate">
  		SELECT
  			`id`
 			,`realtorId`
@@ -37,7 +37,7 @@
  			<![CDATA[ rentPrice < #{rentPrice} ]]>	
  	</select>
  	
- 	 	<select id="selectRealEstateListByAreaPrice" parameterType="hashmap" resultType="com.quiz.lesson03.domain.RealEstate">
+ 	 	<select id="selectRealEstateListByAreaPrice" parameterType="map" resultType="com.quiz.lesson03.domain.RealEstate">
  		SELECT
  			`id`
 			,`realtorId`
@@ -110,5 +110,27 @@
  			, NOW()
  		)
  	</insert>
+ 	
+ 	<update id="updateRealEstateAsId" parameterType="map">
+ 		UPDATE `real_estate`
+ 		SET
+ 			`type` = #{type},
+ 			`price` = #{price},
+ 			`updatedAt` = NOW()
+ 		WHERE
+ 			<![CDATA[
+ 				`id` = #{id}
+ 			]]>
+ 			
+ 	</update>
+ 	
+ 	<delete id="deleteRealEstateAsId" parameterType="int">
+ 		DELETE FROM `real_estate`
+ 		WHERE
+ 			<![CDATA[
+ 				`id` = #{id}
+ 			]]>
+ 			
+ 	</delete>
  	
  </mapper>

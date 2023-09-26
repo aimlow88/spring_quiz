@@ -13,19 +13,29 @@ public interface RealEstateMapper {
 	
 	public List<RealEstate> selectRealEstate(int id);
 	
-	public List<RealEstate> selectRealEstateListByRentPrice(Integer rentPrice);
+	public List<RealEstate> selectRealEstateListByRentPrice(@Param("rentPrice") Integer rentPrice);
 	
-	public List<RealEstate> selectRealEstateListByAreaPrice(Map<String, String> paramMap);
+	public List<RealEstate> selectRealEstateListByAreaPrice(
+			@Param("area") int area,
+			@Param("price") int price);
 	
 	public int insertRealEstate(RealEstate realEstate);
 	
 	public int insertRealEstateAsFiled(
-				@Param("realtorId") int realtorId,
-				@Param("address") String address,
-				@Param("area") int area,
-				@Param("type") String type,
-				@Param("price") int price,
-				@Param("rentPrice") Integer rentPrice
-			);
+			@Param("realtorId") int realtorId,
+			@Param("address") String address,
+			@Param("area") int area,
+			@Param("type") String type,
+			@Param("price") int price,
+			@Param("rentPrice") Integer rentPrice
+	);
+	
+	public int updateRealEstateAsId(
+			@Param("id") int id,
+			@Param("type") String type,
+			@Param("price") int price
+	);
+	
+	public int deleteRealEstateById(int id);
 
 }
