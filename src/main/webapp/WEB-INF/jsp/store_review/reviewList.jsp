@@ -12,7 +12,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>${title} - 리뷰</title>
 	</head>
 	<body>
 		<div class="container">
@@ -22,13 +22,38 @@
 				</div>
 			</header>
 			<section>
-				<h1>우리동네 가게</h1>
-				<c:forEach items="${storeList}" var="store">
-					<span class="font-weight-bold"><a href="http://localhost:8080/store-review/review-view?id=${store.id}&name=${store.name}">${store.name}</a></span><br>
-					${store.phoneNumber }<br>
-					${store.address }<br>
-					<hr>
-				</c:forEach>
+				<h1>${title} - 리뷰</h1>
+				<c:choose>
+					<c:when test="${empty reviewList}">
+						<h2>작성된 리뷰가 없습니다.</h2>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${reviewList}" var="review">
+							<span class="font-weight-bold">${review.userName}</span>
+							${review.point}
+							<fmt:formatNumber value="${review.point}" pattern="#" var="pNum"/>
+							<c:set value="${review.point - pNum}" var="gapNum" />
+							<c:forEach begin="1" end="5" step="1" varStatus="status">
+								<c:choose>
+									<c:when test="${pNum >= status.count}">
+										<img src="/img/review/star_fill.png" alt="별이미지" width="20">
+									</c:when>
+									<c:when test="${pNum < status.count && gapNum = 0.5}">
+										<img src="/img/review/star_half.png" alt="별이미지" width="20">
+									</c:when>
+									<c:otherwise>
+										<img src="/img/review/star_empty.png" alt="별이미지" width="20">
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							<br>
+							<fmt:formatDate value="${review.updatedAt}" pattern="yyyy년 M월 d일"/>
+							<h5>${review.review}</h5><br>
+							${review.menu}<br>
+							<hr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</section>
 			<footer class="bg-light height=80">
 				<div>

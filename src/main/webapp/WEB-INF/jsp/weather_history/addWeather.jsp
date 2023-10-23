@@ -29,7 +29,7 @@
 						<div class="d-flex justify-content-around">
 							<div>
 								<label for="date">날짜</label>
-								<input type="date" id="date" name="date" class="form-control col-10">
+								<input type="text" id="date" name="date" class="form-control col-10">
 								
 							</div>
 							<div>

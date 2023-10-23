@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.quiz.lesson06.mapper.BookmarkMapper">
+ 	<insert id="insertBookmark" parameterType="com.quiz.lesson06.domain.BookmarkVO" useGeneratedKeys="true"  keyProperty="id">
+ 		INSERT INTO `quiz02`
+ 		(
+ 			`name`
+ 			, `url`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{name}
+ 			, #{url}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectBookmarkById" parameterType="int" resultType="com.quiz.lesson06.domain.BookmarkVO">
+ 		SELECT
+ 			`name`
+ 			,`url`
+ 		FROM
+ 			`quiz02`
+ 		WHERE
+ 			`id` = #{id}
+ 	
+ 	</select>
+ 	
+ 	<select id="selectBookmarkList" resultType="com.quiz.lesson06.domain.BookmarkVO">
+ 		SELECT
+ 			`id`
+ 			,`name`
+ 			,`url`
+ 			,`createdAt`
+ 			,`updatedAt`
+ 		FROM
+ 			`quiz02`
+ 	</select>
+ 	
+ 	<select id="exitBookmarkByUrl" parameterType="String" resultType="boolean">
+ 		SELECT COUNT(1)
+ 		FROM
+ 			`quiz02`
+ 		WHERE
+ 			`url` = #{url}
+ 	</select>
+ 	
+ 	<delete id="deleteBookmarkById" parameterType="int">
+ 		DELETE
+ 		FROM
+ 			`quiz02`
+ 		WHERE
+ 			`id` = #{id}
+ 	</delete>
+ </mapper>

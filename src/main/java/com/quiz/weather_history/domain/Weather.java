@@ -2,9 +2,12 @@ package com.quiz.weather_history.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Weather {
 	
 	private int id;
+	@DateTimeFormat(pattern="yyyy-mm-dd")   // controller에서 parameter받을 때 날짜를 type을 string으로 처리해 준다.-테스트해 볼 것...
 	private String date;
 	private String weather;
 	private double temperatures;

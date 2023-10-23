@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.quiz.store_review.mapper.ReviewMapper">
+ 
+ 	<select id="selectReviewList" parameterType="int" resultType="com.quiz.store_review.domain.ReviewVO">
+ 		SELECT
+ 			`id`
+			, `storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`new_review`
+ 		WHERE
+ 			`storeId` = #{id}
+ 		ORDER BY
+ 			`updatedAt` DESC
+ 	</select>
+ 
+ </mapper>
