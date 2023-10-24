@@ -1,5 +1,6 @@
 package com.quiz.lesson07.bo;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,11 @@ public class CompanyBO {
 		Optional<CompanyEntity> company = companyRepository.findById(id);
 		company.ifPresent(c -> companyRepository.delete(c));
 		
+	}
+	
+	public List<CompanyEntity> getCompanyById(int id){
+		
+		return companyRepository.findCompanyById(id) ;
 	}
 
 }
